@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+
+    <title>カタン ダイスカウンター</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Kosugi+Maru" rel="stylesheet">
+</head>
+<body style="font-family: 'Kosugi Maru', sans-serif;">
+
+<div class="container">
+    <div class="row my-2">
+        <div class="col-4">
+            <button type="button" class="btn btn-lg btn-outline-info btn-block p-3 disabled">1</button>
+        </div>
+        <div class="col-4">
+            <button type="button" class="dice-counter btn btn-lg btn-info btn-block p-3">2</button>
+        </div>
+        <div class="col-4">
+            <button type="button" class="dice-counter btn btn-lg btn-info btn-block p-3">3</button>
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col-4">
+            <button type="button" class="dice-counter btn btn-lg btn-info btn-block p-3">4</button>
+        </div>
+        <div class="col-4">
+            <button type="button" class="dice-counter btn btn-lg btn-info btn-block p-3">5</button>
+        </div>
+        <div class="col-4">
+            <button type="button" class="dice-counter btn btn-lg btn-info btn-block p-3">6</button>
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col-4">
+            <button type="button" class="dice-counter btn btn-lg btn-info btn-block p-3">7</button>
+        </div>
+        <div class="col-4">
+            <button type="button" class="dice-counter btn btn-lg btn-info btn-block p-3">8</button>
+        </div>
+        <div class="col-4">
+            <button type="button" class="dice-counter btn btn-lg btn-info btn-block p-3">9</button>
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col-4">
+            <button type="button" class="dice-counter btn btn-lg btn-info btn-block p-3">10</button>
+        </div>
+        <div class="col-4">
+            <button type="button" class="dice-counter btn btn-lg btn-info btn-block p-3">11</button>
+        </div>
+        <div class="col-4">
+            <button type="button" class="dice-counter btn btn-lg btn-info btn-block p-3">12</button>
+        </div>
+    </div>
+    <div class="row my-4">
+        <div class="col-6">
+            <button type="button" class="btn btn-secondary btn-block p-3" data-toggle="modal" data-target="#undoConfirmModal">UNDO</button>
+        </div>
+        <div class="col-6">
+            <button type="button" class="btn btn-warning btn-block p-3" data-toggle="modal" data-target="#resetConfirmModal">RESET</button>
+        </div>
+    </div>
+
+    <canvas id="diceProbability"></canvas>
+
+    <div class="row my-4">
+        <div class="col-12">
+            <button type="button" class="btn btn-success btn-block p-3" data-toggle="modal" data-target="#resultModal">RESULT</button>
+        </div>
+    </div>
+</div>
+
+<!-- Undo Modal -->
+<div class="modal fade" id="undoConfirmModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">UNDO確認</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                UNDOは未実装です…
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>
+                <button type="button" class="btn btn-primary" id="undoButton" data-dismiss="modal">UNDO</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Rest Modal -->
+<div class="modal fade" id="resetConfirmModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">RESET確認</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                記録をすべて消去してよろしいですか？
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>
+                <button type="button" class="btn btn-primary" id="resetButton" data-dismiss="modal">RESET</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Result Modal -->
+<div class="modal fade" id="resultModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">結果</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group row">
+                    <label for="textResult" class="col-form-label col-2">集計</label>
+                    <input type="text" class="form-control col-9" id="textResult" readonly>
+                </div>
+                <div class="form-group row">
+                    <label for="jsonResult" class="col-form-label col-2">JSON</label>
+                    <input type="text" class="form-control col-9" id="jsonResult" readonly>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" id="textCopyButton">TEXT COPY</button>
+                <!--<button type="button" class="btn btn-success" id="csvCopyButton">CSV COPY</button>-->
+                <button type="button" class="btn btn-success" id="jsonCopyButton">JSON COPY</button>
+                <a role="button" class="btn btn-success" id="imageSaveButton" download="dice_result">IMAGE SAVE</a>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let chart;
+    document.addEventListener("DOMContentLoaded", function(){
+        Chart.plugins.register({
+            beforeDraw: function(canvas){
+                var ctx = canvas.chart.ctx;
+                ctx.fillStyle = "rgba(255, 255, 255, 1)";
+                ctx.fillRect(0, 0, canvas.chart.width, canvas.chart.height);
+            }
+        });
+        updateResult(loadCounter());
+    });
+
+    $(".dice-counter").on("click", function() {
+        let button = $(this)[0];
+        // 二度押し防止
+        button.disabled = true;
+
+        // 押されたボタンのカウントをアップし、グラフを再描画
+        const value = button.textContent;
+        const diceCounter = loadCounter();
+        diceCounter.count[value]++;
+        diceCounter.history.push(value);
+        saveCounter(diceCounter);
+        //console.log(diceCounter);
+
+        // 二度押し防止解除
+        setTimeout(function () {
+            button.disabled = false;
+        }.bind(button), 1000);
+    });
+
+    // Undo確認画面に直前に記録されたダイス情報を表示する
+    $('#undoConfirmModal').on('show.bs.modal', function (event) {
+        const diceCounter = loadCounter();
+        const lastDice = getLastDice(diceCounter);
+        $(this).find(".modal-body").text(`直前に記録されたダイスは${lastDice}です。取消しますか？`);
+    });
+
+    $("#resetButton").on("click", function() {
+        resetCounter();
+    });
+
+    $("#undoButton").on("click", function() {
+        undoCounter(loadCounter());
+    });
+
+    $("#textCopyButton").on("click", function() {
+        $("#textResult").select();
+        document.execCommand('copy');
+        window.getSelection().removeAllRanges();
+    });
+
+    $("#jsonCopyButton").on("click", function() {
+        $("#jsonResult").select();
+        document.execCommand('copy');
+        window.getSelection().removeAllRanges();
+    });
+
+    function loadCounter()
+    {
+        let diceCounter = JSON.parse(localStorage.getItem('diceCounter'));
+        if (diceCounter === null) {
+            return resetCounter();
+        }
+        return diceCounter;
+    }
+
+    function saveCounter(diceCounter)
+    {
+        localStorage.setItem('diceCounter', JSON.stringify(diceCounter));
+        updateResult(diceCounter);
+    }
+
+    function resetCounter()
+    {
+        diceCounter = {};
+        diceCounter.count = {};
+        diceCounter.history = [];
+        for (var i=2; i<=12; i++) {
+            diceCounter.count[i] = 0;
+        }
+        saveCounter(diceCounter);
+        return diceCounter;
+    }
+
+    function getLastDice(diceCounter)
+    {
+        return (diceCounter.history.length !== 0) ? diceCounter.history[diceCounter.history.length - 1] : null;
+    }
+
+    function undoCounter(diceCounter)
+    {
+        if (diceCounter.history.length === 0) {
+            return;
+        }
+        const deleteDice = diceCounter.history.pop();
+        diceCounter.count[deleteDice]--;
+        saveCounter(diceCounter);
+    }
+
+    function drawChart(diceCounter)
+    {
+        if (chart) {
+            chart.destroy();
+            chart = null;
+        }
+
+        // データを百分率に変換
+        let totalCount = 0;
+        $.each(diceCounter.count, function(index, value) {
+            totalCount += value;
+        });
+        if (totalCount === 0) {
+            return;
+        }
+        let labels = [], data = [];
+        $.each(diceCounter.count, function(index, value) {
+            labels.push(index);
+            data.push((Math.round(value / totalCount * 100 * 10)/10));
+        });
+
+        const ctx = document.getElementById('diceProbability').getContext('2d');
+        chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    backgroundColor: 'rgb(255, 99, 132)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    data: data,
+                }]
+            },
+            options: {
+                legend: {
+                    display: false,
+                },
+                tooltips: {
+                    callbacks: {
+                        label: function (tooltipItem, data)
+                        {
+                            return + data.datasets[0].data[tooltipItem.index] + "%";
+                        }
+                    }
+                },
+                animation: {
+                    onComplete: function(animation)
+                    {
+                        $("#imageSaveButton").attr("href", $("#diceProbability")[0].toDataURL());
+                    }
+                }
+            }
+        });
+    }
+
+    function updateResult(diceCounter)
+    {
+        // 集計テキスト更新
+        let totalCount = 0;
+        $.each(diceCounter.count, function(index, value) {
+            totalCount += value;
+        });
+        if (totalCount !== 0) {
+            let textString = "";
+            $.each(diceCounter.count, function(index, value) {
+                const rate = Math.round(value / totalCount * 100 * 10)/10;
+                if (textString !== "") {
+                    textString += "、"
+                }
+                textString += `${index}:${rate}%(${value}回)`;
+            });
+            $("#textResult").val(textString + ` (全${totalCount}ターン)`);
+        }
+
+        // JSON更新
+        $("#jsonResult").val(JSON.stringify(diceCounter));
+
+        // グラフを描画
+        drawChart(diceCounter);
+
+        // 記録がないときは各種モーダル表示ボタンを無効化
+        $("[data-toggle='modal']").prop("disabled", (getLastDice(diceCounter) === null));
+    }
+</script>
+
+</body>
+</html>
