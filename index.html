@@ -27,66 +27,34 @@
 <body style="font-family: 'Kosugi Maru', sans-serif;">
 
 <div class="container">
-    <div class="row my-2">
-        <div class="col-4">
-            <button type="button" class="btn btn-lg btn-outline-info btn-block p-3 disabled">1</button>
-        </div>
-        <div class="col-4">
-            <button type="button" class="dice-counter btn btn-lg btn-info btn-block p-3">2</button>
-        </div>
-        <div class="col-4">
-            <button type="button" class="dice-counter btn btn-lg btn-info btn-block p-3">3</button>
-        </div>
+    <div class="d-flex">
+        <button type="button" class="disabled btn btn-lg btn-outline-info btn-block my-1 p-3">1</button>
+        <button type="button" class="dice-counter btn btn-lg btn-info btn-block mx-4 my-1 p-3">2</button>
+        <button type="button" class="dice-counter btn btn-lg btn-info btn-block my-1 p-3">3</button>
     </div>
-    <div class="row my-2">
-        <div class="col-4">
-            <button type="button" class="dice-counter btn btn-lg btn-info btn-block p-3">4</button>
-        </div>
-        <div class="col-4">
-            <button type="button" class="dice-counter btn btn-lg btn-info btn-block p-3">5</button>
-        </div>
-        <div class="col-4">
-            <button type="button" class="dice-counter btn btn-lg btn-info btn-block p-3">6</button>
-        </div>
+    <div class="d-flex">
+        <button type="button" class="dice-counter btn btn-lg btn-info btn-block my-1 p-3">5</button>
+        <button type="button" class="dice-counter btn btn-lg btn-info btn-block mx-4 my-1 p-3">6</button>
+        <button type="button" class="dice-counter btn btn-lg btn-info btn-block my-1 p-3">4</button>
     </div>
-    <div class="row my-2">
-        <div class="col-4">
-            <button type="button" class="dice-counter btn btn-lg btn-info btn-block p-3">7</button>
-        </div>
-        <div class="col-4">
-            <button type="button" class="dice-counter btn btn-lg btn-info btn-block p-3">8</button>
-        </div>
-        <div class="col-4">
-            <button type="button" class="dice-counter btn btn-lg btn-info btn-block p-3">9</button>
-        </div>
+    <div class="d-flex">
+        <button type="button" class="dice-counter btn btn-lg btn-info btn-block my-1 p-3">7</button>
+        <button type="button" class="dice-counter btn btn-lg btn-info btn-block mx-4 my-1 p-3">8</button>
+        <button type="button" class="dice-counter btn btn-lg btn-info btn-block my-1 p-3">9</button>
     </div>
-    <div class="row my-2">
-        <div class="col-4">
-            <button type="button" class="dice-counter btn btn-lg btn-info btn-block p-3">10</button>
-        </div>
-        <div class="col-4">
-            <button type="button" class="dice-counter btn btn-lg btn-info btn-block p-3">11</button>
-        </div>
-        <div class="col-4">
-            <button type="button" class="dice-counter btn btn-lg btn-info btn-block p-3">12</button>
-        </div>
+    <div class="d-flex">
+        <button type="button" class="dice-counter btn btn-lg btn-info btn-block my-1 p-3">10</button>
+        <button type="button" class="dice-counter btn btn-lg btn-info btn-block mx-4 my-1 p-3">11</button>
+        <button type="button" class="dice-counter btn btn-lg btn-info btn-block my-1 p-3">12</button>
     </div>
-    <div class="row my-4">
-        <div class="col-6">
-            <button type="button" class="btn btn-secondary btn-block p-3" data-toggle="modal" data-target="#undoConfirmModal">UNDO</button>
-        </div>
-        <div class="col-6">
-            <button type="button" class="btn btn-warning btn-block p-3" data-toggle="modal" data-target="#resetConfirmModal">RESET</button>
-        </div>
+    <div class="d-flex">
+        <button type="button" class="btn btn-secondary btn-block mr-2 my-4 p-3" data-toggle="modal" data-target="#undoConfirmModal">UNDO</button>
+        <button type="button" class="btn btn-warning btn-block ml-2 my-4 p-3" data-toggle="modal" data-target="#resetConfirmModal">RESET</button>
     </div>
 
     <canvas id="diceProbability"></canvas>
 
-    <div class="row my-4">
-        <div class="col-12">
-            <button type="button" class="btn btn-success btn-block p-3" data-toggle="modal" data-target="#resultModal">RESULT</button>
-        </div>
-    </div>
+    <button type="button" class="btn btn-success btn-block my-4 p-3" data-toggle="modal" data-target="#resultModal">RESULT</button>
 </div>
 
 <!-- Undo Modal -->
