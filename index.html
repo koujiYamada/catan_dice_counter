@@ -242,6 +242,11 @@
 
     function drawChart(diceCounter)
     {
+        if (chart) {
+            chart.destroy();
+            chart = null;
+        }
+
         // データを百分率に変換
         let totalCount = 0;
         $.each(diceCounter.count, function(index, value) {
@@ -256,9 +261,6 @@
             data.push((Math.round(value / totalCount * 100 * 10)/10));
         });
 
-        if (chart) {
-            chart.destroy();
-        }
         const ctx = document.getElementById('diceProbability').getContext('2d');
         chart = new Chart(ctx, {
             type: 'bar',
