@@ -3,7 +3,7 @@
   "name": "カタン ダイスカウンター",
   "short_name": "ダイスカウンター",
   "theme_color": "#b12230",
-  "background_color": "#b12230",
+  "background_color": "#000000",
   "icons": [{
       "src": "./dice_counter_256.png",
       "sizes": "256x256",
@@ -14,6 +14,5 @@
       "type": "image/png"
     }],
   "start_url": "./?utm_source=homescreen",
-  "display": "standalone",
-  "orientation": "landscape"
+  "display": "standalone"
 }
