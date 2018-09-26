@@ -1,7 +1,7 @@
 {
-  "name": "CatanDiceCounter",
-  "short_name": "CDC",
-  "background_color": "#fc980c",
+  "name": "カタン ダイスカウンター",
+  "short_name": "ダイスカウンター",
+  "background_color": "#b12230",
   "icons": [{
       "src": "./dice_counter_256.png",
       "sizes": "256x256",
