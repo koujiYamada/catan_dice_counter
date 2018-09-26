@@ -1,6 +1,8 @@
 {
+  "lang": "ja",
   "name": "カタン ダイスカウンター",
   "short_name": "ダイスカウンター",
+  "theme_color": "#b12230",
   "background_color": "#b12230",
   "icons": [{
       "src": "./dice_counter_256.png",
@@ -12,5 +14,6 @@
       "type": "image/png"
     }],
   "start_url": "./?utm_source=homescreen",
-  "display": "standalone"
+  "display": "standalone",
+  "orientation": "landscape"
 }
