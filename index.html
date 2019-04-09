@@ -295,6 +295,15 @@
                     {
                         $("#imageSaveButton").attr("href", $("#diceProbability")[0].toDataURL());
                     }
+                },
+                scales: {
+                    yAxes: [
+                        {
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }
+                    ]
                 }
             }
         });
